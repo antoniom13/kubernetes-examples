@@ -30,6 +30,12 @@ kubectl delete -f statefulset.yaml
 aws ec2 delete-volume --volume-id ${volumeID} --region=${region}
 ```
 
+## Bring Down Stack
+
+```bash
+aws cloudformation delete-stack --stack-name 'eks-example'
+```
+
 ## Appendix
 
 ### Inspirations
