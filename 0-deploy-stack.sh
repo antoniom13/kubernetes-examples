@@ -14,12 +14,27 @@ AWSBIN=$(which aws)
 YASHABIN=$(which yasha)
 JQ=$(which jq)
 
-#$AWSBIN cloudformation deploy \
-#  --template-file $CFFILE \
-#  --capabilities CAPABILITY_IAM \
-#  --stack-name $STACKNAME
-#
-#echo
+createCFStack() {
+  read -n1 -p "Press any button to create Cloud Formation Stack..."
+  echo "Creating Cloudformation Stack. This may take up to 20min..."
+
+  $AWSBIN cloudformation deploy \
+    --template-file $CFFILE \
+    --capabilities CAPABILITY_IAM \
+    --stack-name $STACKNAME
+    --tags Name=eks-example
+}
+
+STACKEXISTS=$($AWSBIN cloudformation describe-stacks \
+  --stack-name $STACKNAME)
+
+if [[ $STACKEXISTS == '' ]]; then
+  createCFStack
+else
+  echo "$STACKNAME has already been created..."
+fi
+
+echo
 
 OUTPUT=$($AWSBIN cloudformation describe-stacks \
   --stack-name $STACKNAME \
@@ -52,13 +67,15 @@ yasha --roleARN=$roleARN \
   -o $KUBECONFIGMAP \
   $KUBECONFIGMAPTEMPLATE
 
+
 echo "Setting up env file for exports..."
 echo
-echo "echo export KUBECONFIG=$KUBECONFIG" > $SETENVFILE
+echo "echo export KUBECONFIG=$KUBECONFIG" > $SETENVFILE &&
+  chmod +x $SETENVFILE
 echo
 echo "Please run the following in your terminal to finish:
 
-$ eval ${SETENVFILE}
+$ eval \$(${SETENVFILE})
 
 "
 
