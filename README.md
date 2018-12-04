@@ -52,6 +52,9 @@ $ aws ec2 delete-volume --volume-id ${volumeID} --region=${region}
 $ aws cloudformation delete-stack --stack-name 'eks-example'
 ```
 
+# What's Happening Under the Hood
+> Coming Soon...
+
 # Appendix
 
 ## Inspirations
