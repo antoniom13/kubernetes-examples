@@ -35,8 +35,8 @@ $ run commands to check nodes / services / pods
 
 * delete pod / pv / pvc / volume
 ```bash
-kubectl delete -f statefulset.yaml
-aws ec2 delete-volume --volume-id ${volumeID} --region=${region}
+$ kubectl delete -f statefulset.yaml
+$ aws ec2 delete-volume --volume-id ${volumeID} --region=${region}
 ```
 
 ---
@@ -49,7 +49,7 @@ aws ec2 delete-volume --volume-id ${volumeID} --region=${region}
 ## Bring Down Stack
 
 ```bash
-aws cloudformation delete-stack --stack-name 'eks-example'
+$ aws cloudformation delete-stack --stack-name 'eks-example'
 ```
 
 # Appendix
