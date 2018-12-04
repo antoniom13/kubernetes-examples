@@ -1,4 +1,4 @@
-# AWS EKS Example & Restoring from Snapshot
+# Creating Cloud Formation & EKS Stack
 
 ## Prerequisites
 
@@ -39,14 +39,10 @@ $ kubectl delete -f statefulset.yaml
 $ aws ec2 delete-volume --volume-id ${volumeID} --region=${region}
 ```
 
----
-
-## Deploy Applications
+# Deploying Applications
 > Coming Soon....
 
----
-
-## Bring Down Stack
+# Bring Down Stack
 
 ```bash
 $ aws cloudformation delete-stack --stack-name 'eks-example'
