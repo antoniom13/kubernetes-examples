@@ -9,12 +9,20 @@
 * `yasha` [Github](https://github.com/kblomqvist/yasha)
 
 ## Deploy EKS Stack using CF
-
 `$ ./0-deploy-stack.sh`
 
 ## Set Environment Variables for Kubernetes
+`$ eval $(./setenv.sh)`
 
-`$ eval setenv.sh`
+## Apply Kubernetes Map
+
+### Manually
+`$ kubectl apply -f k8s-configmap.yml`
+
+### Automatically
+Run the demo for a full deployment.
+
+`$ ./1-demo.sh`
 
 ## Verify Deployment
 
@@ -30,15 +38,22 @@ kubectl delete -f statefulset.yaml
 aws ec2 delete-volume --volume-id ${volumeID} --region=${region}
 ```
 
+---
+
+## Deploy Applications
+Coming Soon....
+
+---
+
 ## Bring Down Stack
 
 ```bash
 aws cloudformation delete-stack --stack-name 'eks-example'
 ```
 
-## Appendix
+# Appendix
 
-### Inspirations
+## Inspirations
 * [AWS EKS Security Groups](https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html)
 * [Statefulset Recovery Blog Post](https://medium.com/@joatmon08/kubernetes-statefulset-recovery-from-aws-snapshots-8a6159cda6f1)
 * [AWS EKS Example](https://github.com/y13i/aws-eks-example)
