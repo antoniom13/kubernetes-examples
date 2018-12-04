@@ -29,6 +29,9 @@ pause
 
 echo > $VARSFILE
 
+echo "(kubectl) Applying k8s-configmap"
+kubectl apply -f k8s-configmap.yml --wait
+
 echo "(kubectl) Applying statefulset-init & waiting"
 kubectl apply -f statefulset-init --wait
 
