@@ -8,13 +8,13 @@
 * `jq` [Github](https://github.com/stedolan/jq)
 * `yasha` [Github](https://github.com/kblomqvist/yasha)
 
-## Deploy EKS Stack using CF
+## Deploying EKS Stack using CF
 `$ ./0-deploy-stack.sh`
 
-## Set Environment Variables for Kubernetes
+## Setting Environment Variables for Kubernetes
 `$ eval $(./setenv.sh)`
 
-## Apply Kubernetes Map
+## Applying Kubernetes Map
 
 ### Manually
 `$ kubectl apply -f k8s-configmap.yml`
@@ -24,14 +24,14 @@ Run the demo for a full deployment.
 
 `$ ./1-demo.sh`
 
-## Verify Deployment
+## Verifying Deployment
 > Coming Soon....
 
 ```bash
 $ run commands to check nodes / services / pods
 ```
 
-## Simulate Doomsday
+## Simulating Doomsday
 
 * delete pod / pv / pvc / volume
 ```bash
@@ -42,7 +42,7 @@ $ aws ec2 delete-volume --volume-id ${volumeID} --region=${region}
 # Deploying Applications
 > Coming Soon....
 
-# Bring Down Stack
+# Bringing Down the Stack
 
 ```bash
 $ aws cloudformation delete-stack --stack-name 'eks-example'
