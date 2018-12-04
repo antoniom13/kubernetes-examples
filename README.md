@@ -55,6 +55,9 @@ $ aws cloudformation delete-stack --stack-name 'eks-example'
 # What's Happening Under the Hood
 > Coming Soon...
 
+# Troubleshooting
+> Coming Soon...
+
 # Appendix
 
 ## Inspirations
