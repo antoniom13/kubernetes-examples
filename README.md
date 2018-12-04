@@ -25,6 +25,7 @@ Run the demo for a full deployment.
 `$ ./1-demo.sh`
 
 ## Verify Deployment
+> Coming Soon....
 
 ```bash
 $ run commands to check nodes / services / pods
@@ -41,7 +42,7 @@ aws ec2 delete-volume --volume-id ${volumeID} --region=${region}
 ---
 
 ## Deploy Applications
-Coming Soon....
+> Coming Soon....
 
 ---
 
