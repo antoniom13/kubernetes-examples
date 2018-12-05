@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ volumeName }}
+spec:
+  storageClassName: gp2
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  persistentVolumeReclaimPolicy: Delete
+  awsElasticBlockStore:
+    fsType: ext4
+    volumeID: aws://{{ region }}/{{ volumeID }}
