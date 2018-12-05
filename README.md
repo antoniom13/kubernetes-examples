@@ -17,7 +17,10 @@
 ## Applying Kubernetes Map
 
 ### Manually
-`$ kubectl apply -f k8s-configmap.yml`
+```bash
+$ kubectl apply -f k8s-configmap.yml
+$ kubectl apply -f k8s-storageclass-ebs-gp2.yml
+```
 
 ### Automatically
 Run the demo for a full deployment.

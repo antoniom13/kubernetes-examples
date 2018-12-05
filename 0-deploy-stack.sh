@@ -10,6 +10,9 @@ KUBECONFIGTEMPLATE='./kube-configs/k8s-config.yml.j2'
 KUBECONFIGMAP='./k8s-configmap-aws.yml'
 KUBECONFIGMAPTEMPLATE='./kube-configs/k8s-configmap-aws.yml.j2'
 
+KUBESTORAGECLASS='./k8s-storageclass-ebs-gp2.yml'
+KUBESTORAGECLASSTEMPLATE='./kube-configs/k8s-storageclass-ebs-gp2.yml.j2'
+
 AWSBIN=$(which aws)
 YASHABIN=$(which yasha)
 JQ=$(which jq)
@@ -21,12 +24,14 @@ createCFStack() {
   $AWSBIN cloudformation deploy \
     --template-file $CFFILE \
     --capabilities CAPABILITY_IAM \
-    --stack-name $STACKNAME
+    --stack-name $STACKNAME \
     --tags Name=$STACKNAME
 }
 
+stty -echo
 STACKEXISTS=$($AWSBIN cloudformation describe-stacks \
   --stack-name $STACKNAME)
+stty echo
 
 if [[ $STACKEXISTS == '' ]]; then
   createCFStack
@@ -67,6 +72,8 @@ yasha --roleARN=$roleARN \
   -o $KUBECONFIGMAP \
   $KUBECONFIGMAPTEMPLATE
 
+echo "Generating Kubernetes (k8s) Storage Class for EBS"
+yasha -o $KUBESTORAGECLASS $KUBESTORAGECLASSTEMPLATE
 
 echo "Setting up env file for exports..."
 echo
