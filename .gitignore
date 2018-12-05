@@ -3,4 +3,3 @@
 setenv.sh
 vars.yml
 statefulset-restore/*.yml
-statefulset-init/*.yml
