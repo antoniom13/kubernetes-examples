@@ -1,8 +1,8 @@
 #!/bin/bash
 
-STACKNAME='eks-example'
+STACKNAME='eks-example2'
 
-CFFILE=./cloudfront-config/cfn.yml
+CFFILE=./cloudformation-config/cfn.yml
 SETENVFILE='./setenv.sh'
 KUBECONFIG='./k8s-config.yml'
 KUBECONFIGTEMPLATE='./kube-configs/k8s-config.yml.j2'
@@ -22,7 +22,7 @@ createCFStack() {
     --template-file $CFFILE \
     --capabilities CAPABILITY_IAM \
     --stack-name $STACKNAME
-    --tags Name=eks-example
+    --tags Name=$STACKNAME
 }
 
 STACKEXISTS=$($AWSBIN cloudformation describe-stacks \
