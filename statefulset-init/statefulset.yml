@@ -1,0 +1,43 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stateful-example
+  labels:
+    app: stateful-example
+spec:
+  clusterIP: None
+  selector:
+    app: stateful-example
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: stateful-example
+spec:
+  selector:
+    matchLabels:
+      app: stateful-example
+  serviceName: stateful-example
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: stateful-example
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: stateful-example
+        image: blubetadev/kubernetes-example:latest
+        volumeMounts:
+        - name: volume
+          mountPath: /usr/share
+  volumeClaimTemplates:
+  - metadata:
+      name: volume
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: gp2
+      resources:
+        requests:
+          storage: 1Gi
